@@ -77,8 +77,9 @@ class Questions(models.Model):
     question_text = models.CharField(max_length=255, verbose_name='Текст вопроса')
 
     class Type(models.TextChoices):
-        Math = 'MT', gettext_lazy('Math')
-        Programming = 'PR', gettext_lazy('Programming')
+        wImage = 'IM', gettext_lazy('With Image')
+        mChoice = 'MC', gettext_lazy('Multiple Choice')
+        sChoice = 'SC', gettext_lazy('Single Choice')
 
     type = models.CharField(max_length=2, choices=Type.choices)
 

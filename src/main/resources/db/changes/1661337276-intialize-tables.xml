@@ -3,8 +3,9 @@
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
-    <preConditions>
-        <sqlCheck expectedResult="1">
+    <preConditions onErrorMessage="Missing extension &quot;uuid-ossp&quot;!
+                   For PostgreSQL execute: CREATE EXTENSION IF NOT EXISTS &quot;uuid-ossp&quot;;">
+        <sqlCheck expectedResult="1" >
             SELECT 1 FROM pg_extension WHERE extname = 'uuid-ossp'
         </sqlCheck>
     </preConditions>

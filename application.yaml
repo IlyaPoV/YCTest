@@ -12,6 +12,6 @@ app-config:
 spring:
   profiles:
     active: dev
-#    active: asana-test
+#    active: test
   jpa:
     show-sql: "${app-config.database.debug:false}"

@@ -9,5 +9,14 @@
             SELECT 1 FROM pg_extension WHERE extname = 'uuid-ossp'
         </sqlCheck>
     </preConditions>
-    <!-- Костя Код писать тут для 1й миграции-->
+    <changeSet id="init-table" author="m.bondarovich">
+        <sql>
+            create table test_table(
+                test_id    uuid    NOT NULL DEFAULT uuid_generate_v4() PRIMARY KEY
+            );
+        </sql>
+        <rollback>
+            DROP TABLE test_table;
+        </rollback>
+    </changeSet>
 </databaseChangeLog>

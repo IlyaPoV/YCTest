@@ -4,7 +4,7 @@ app-config:
   database:
     host:  localhost
     port : 5432
-    dbname: postgres
+    dbname: ya-coding
     username: postgres
     #     local
     password: 1234
@@ -12,6 +12,6 @@ app-config:
 spring:
   profiles:
     active: dev
-#    active: asana-test
+#    active: test
   jpa:
     show-sql: "${app-config.database.debug:false}"

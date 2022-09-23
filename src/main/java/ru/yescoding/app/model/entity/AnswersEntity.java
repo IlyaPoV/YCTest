@@ -23,7 +23,7 @@ public class AnswersEntity {
     private String answerText;
 
     @JoinColumn(name = "answer_id", foreignKey = @ForeignKey(name = "fk_answers"))
-    @OneToMany(targetEntity = TestHistoryAnswersEntity.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(targetEntity = TestHistoryAnswersEntity.class)
     private List<TestHistoryAnswersEntity> testHistoryAnswers;
 
     public AnswersEntity(UUID answerId, UUID questionId, boolean isRight, String answerText) {

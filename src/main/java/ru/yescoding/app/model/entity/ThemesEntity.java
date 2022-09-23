@@ -20,7 +20,7 @@ public class ThemesEntity {
     private String title;
 
     @JoinColumn(name = "theme_id", foreignKey = @ForeignKey(name = "fk_themes"))
-    @OneToMany(targetEntity = QuestionsEntity.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(targetEntity = QuestionsEntity.class)
     private List<QuestionsEntity> questions;
 
     public ThemesEntity(UUID themeId, UUID subjectId, String title) {

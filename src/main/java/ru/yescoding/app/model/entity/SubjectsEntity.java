@@ -17,15 +17,15 @@ public class SubjectsEntity {
     private String title;
 
     @JoinColumn(name = "subject_id", foreignKey = @ForeignKey(name = "fk_subjects"))
-    @OneToMany(targetEntity = ThemesEntity.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(targetEntity = ThemesEntity.class)
     private List<ThemesEntity> themes;
 
     @JoinColumn(name = "subject_id", foreignKey = @ForeignKey(name = "fk_subjects"))
-    @OneToMany(targetEntity = GroupsEntity.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(targetEntity = GroupsEntity.class)
     private List<GroupsEntity> groups;
 
     @JoinColumn(name = "subject_id", foreignKey = @ForeignKey(name = "fk_subjects"))
-    @OneToMany(targetEntity = TestsEntity.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(targetEntity = TestsEntity.class)
     private List<TestsEntity> tests;
 
     void SubjectsEntity(UUID subjectId, String title) {

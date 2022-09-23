@@ -28,11 +28,11 @@ public class QuestionsEntity {
     private QuestionType type;
 
     @JoinColumn(name = "question_id", foreignKey = @ForeignKey(name = "fk_questions"))
-    @OneToMany(targetEntity = AnswersEntity.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(targetEntity = AnswersEntity.class)
     private List<AnswersEntity> answers;
 
     @JoinColumn(name = "question_id", foreignKey = @ForeignKey(name = "fk_questions"))
-    @OneToMany(targetEntity = TestHistoryAnswersEntity.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(targetEntity = TestHistoryAnswersEntity.class)
     private List<TestHistoryAnswersEntity> testHistoriesAnswer;
 
     @ManyToMany(mappedBy = "questions")

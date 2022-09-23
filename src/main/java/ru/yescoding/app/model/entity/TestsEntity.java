@@ -20,7 +20,7 @@ public class TestsEntity {
     private UUID subjectId;
 
     @JoinColumn(name = "test_id", foreignKey = @ForeignKey(name = "fk_tests"))
-    @OneToMany(targetEntity = TestHistoriesEntity.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(targetEntity = TestHistoriesEntity.class)
     private List<TestHistoriesEntity> testHistories;
 
     @ManyToMany(targetEntity = QuestionsEntity.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)

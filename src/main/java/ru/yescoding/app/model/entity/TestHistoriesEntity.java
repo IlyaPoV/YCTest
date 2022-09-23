@@ -24,7 +24,7 @@ public class TestHistoriesEntity {
     private Date passingDate;
 
     @JoinColumn(name = "test_histories_id", foreignKey = @ForeignKey(name = "fk_test_histories"))
-    @OneToMany(targetEntity = TestHistoryAnswersEntity.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(targetEntity = TestHistoryAnswersEntity.class)
     private List<TestHistoryAnswersEntity> testHistoryAnswers;
 
     public TestHistoriesEntity(UUID testHistoriesId, UUID userId, UUID testId, Date passingDate) {

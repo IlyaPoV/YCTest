@@ -25,7 +25,7 @@ public class UsersEntity {
     private Role role;
 
     @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "fk_users"))
-    @OneToMany(targetEntity = TestHistoriesEntity.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(targetEntity = TestHistoriesEntity.class)
     private List<TestHistoriesEntity> testHistories;
 
     @ManyToMany(targetEntity = GroupsEntity.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)

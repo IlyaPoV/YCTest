@@ -12,7 +12,7 @@
     </preConditions>
     <changeSet id="create-table-users" author="TalankinND">
         <sql>
-            CREATE TABLE if not exists users (
+            CREATE TABLE if not exists public.users (
             user_id uuid NOT NULL default uuid_generate_v4(),
             name varchar NULL,
             sname varchar NULL,
@@ -21,24 +21,24 @@
             );
         </sql>
         <rollback>
-            drop table if exists users;
+            drop table if exists public.users;
         </rollback>
     </changeSet>
     <changeSet id="create-table-subjects" author="TalankinND">
         <sql>
-            CREATE TABLE if not exists subjects (
+            CREATE TABLE if not exists public.subjects (
             subject_id uuid NOT NULL default uuid_generate_v4(),
             title varchar NULL,
             CONSTRAINT subjects_pkey PRIMARY KEY (subject_id)
             );
         </sql>
         <rollback>
-            drop table if exists subjects;
+            drop table if exists public.subjects;
         </rollback>
     </changeSet>
     <changeSet id="create-table-tests" author="TalankinND">
         <sql>
-            CREATE TABLE if not exists tests (
+            CREATE TABLE if not exists public.tests (
             test_id uuid NOT NULL default uuid_generate_v4(),
             title varchar NULL,
             subject_id uuid,
@@ -47,12 +47,12 @@
             );
         </sql>
         <rollback>
-            drop table if exists tests;
+            drop table if exists public.tests;
         </rollback>
     </changeSet>
     <changeSet id="create-table-groups" author="TalankinND">
         <sql>
-            CREATE TABLE if not exists groups (
+            CREATE TABLE if not exists public."groups" (
             group_id uuid NOT NULL default uuid_generate_v4(),
             subject_id uuid NULL,
 
@@ -62,12 +62,12 @@
             );
         </sql>
         <rollback>
-            drop table if exists groups;
+            drop table if exists public."groups";
         </rollback>
     </changeSet>
     <changeSet id="create-table-themes" author="TalankinND">
         <sql>
-            CREATE TABLE if not exists themes (
+            CREATE TABLE if not exists public.themes (
             theme_id uuid NOT NULL default uuid_generate_v4(),
             subject_id uuid NULL,
             title varchar NULL,
@@ -81,7 +81,7 @@
     </changeSet>
     <changeSet id="create-table-questions" author="TalankinND">
         <sql>
-            CREATE TABLE if not exists questions (
+            CREATE TABLE if not exists public.questions (
             question_id uuid NOT NULL default uuid_generate_v4(),
             theme_id uuid NULL,
             points int4 NULL,
@@ -92,12 +92,12 @@
             );
         </sql>
         <rollback>
-            drop table if exists questions;
+            drop table if exists public.questions;
         </rollback>
     </changeSet>
     <changeSet id="create-table-answers" author="TalankinND">
         <sql>
-            CREATE TABLE if not exists answers (
+            CREATE TABLE if not exists public.answers (
             answer_id uuid NOT NULL default uuid_generate_v4(),
             question_id uuid NULL,
             is_right bool NULL,
@@ -107,12 +107,12 @@
             );
         </sql>
         <rollback>
-            drop table if exists answers
+            drop table if exists public.answers
         </rollback>
     </changeSet>
     <changeSet id="create-table-test_histories" author="TalankinND">
         <sql>
-            CREATE TABLE if not exists test_histories (
+            CREATE TABLE if not exists public.test_histories (
             test_histories_id uuid NOT NULL default uuid_generate_v4(),
             user_id uuid NULL,
             test_id uuid NULL,
@@ -123,12 +123,12 @@
             );
         </sql>
         <rollback>
-            drop table if exists test_histories;
+            drop table if exists public.test_histories;
         </rollback>
     </changeSet>
     <changeSet id="create-table-test_history_answers" author="TalankinND">
         <sql>
-            CREATE TABLE if not exists test_history_answers (
+            CREATE TABLE if not exists public.test_history_answers (
             test_histories_id uuid NULL,
             question_id uuid NULL,
             answer_id uuid NULL,
@@ -139,33 +139,35 @@
             );
         </sql>
         <rollback>
-            drop table if exists test_history_answers
+            drop table if exists public.test_history_answers
         </rollback>
     </changeSet>
     <changeSet id="create-table-test_i_questions" author="TalankinND">
         <sql>
-            CREATE TABLE if not exists test_i_questions (
+            CREATE TABLE if not exists public.test_i_questions (
             test_id uuid,
             question_id uuid,
             CONSTRAINT fk_tests FOREIGN KEY (test_id) REFERENCES tests(test_id),
-            CONSTRAINT fk_questions FOREIGN KEY (question_id) REFERENCES questions(question_id)
+            CONSTRAINT fk_questions FOREIGN KEY (question_id) REFERENCES questions(question_id),
+            CONSTRAINT pk_test_i_questions PRIMARY KEY (test_id, question_id)
             );
         </sql>
         <rollback>
-            drop table if exists test_i_questions;
+            drop table if exists public.test_i_questions;
         </rollback>
     </changeSet>
     <changeSet id="create-table-user_i_group" author="TalankinND">
         <sql>
-            CREATE TABLE if not exists user_i_group (
+            CREATE TABLE if not exists public.user_i_group (
             group_id uuid,
             user_id uuid,
             CONSTRAINT fk_groups FOREIGN KEY (group_id) REFERENCES groups(group_id),
-            CONSTRAINT fk_users FOREIGN KEY (user_id) REFERENCES users(user_id)
+            CONSTRAINT fk_users FOREIGN KEY (user_id) REFERENCES users(user_id),
+            CONSTRAINT pk_user_i_group PRIMARY KEY (group_id, user_id)
             );
         </sql>
         <rollback>
-            drop table if exists user_i_group;
+            drop table if public.exists user_i_group;
         </rollback>
     </changeSet>
 </databaseChangeLog>

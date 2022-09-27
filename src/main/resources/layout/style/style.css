@@ -394,3 +394,57 @@ h1, h2, h3, h4, p, ul, li {
 .success-item__percent--absolute {
     color: var(--violet);
 }
+
+
+
+/* groupPage */
+
+.group-item__link {
+    color: #000000;
+    text-decoration: none;
+    display: flex;
+    background: #fff;
+    border-radius: 10px;
+    padding: 24px 32px;
+}
+
+.group-item__link:hover {
+    opacity: .6;
+}
+
+.group-item__link:active {
+    opacity: .4;
+}
+
+.group-item__headline {
+    font-family: var(--montseratt);
+    font-size: 32px;
+    font-weight: 700;
+    margin-right: auto;
+}
+
+.group-item__desc-list {
+    display: flex;
+    min-width: 420px;
+    justify-content: space-between;
+}
+
+.group-item__desc-wrap:first-child {
+    width: 200px;
+}
+
+.desc-wrap__key {
+    font-family: var(--opensans);
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.desc-wrap__value {
+    font-family: var(--montseratt);
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.group-list__item {
+    margin-bottom: 20px;
+}

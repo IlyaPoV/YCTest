@@ -1,6 +1,6 @@
 package ru.yescoding.app.model.entity;
 
-import ru.yescoding.app.model.EnumTypes.Role;
+import ru.yescoding.app.model.entity.enumTypes.Role;
 
 import javax.persistence.*;
 import java.util.List;
@@ -22,21 +22,21 @@ public class UsersEntity {
     private String sName;
 
     @Column(name = "role")
-    private Role role;
+    private String role;
 
     @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "fk_users"))
     @OneToMany(targetEntity = TestHistoriesEntity.class)
     private List<TestHistoriesEntity> testHistories;
 
-    @ManyToMany(targetEntity = GroupsEntity.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(targetEntity = GroupsEntity.class)
     @JoinTable(
             name = "user_i_group",
             joinColumns = {@JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "fk_users"))},
             inverseJoinColumns = {@JoinColumn(name = "group_id", foreignKey = @ForeignKey(name = "fk_groups"))}
     )
-    List<GroupsEntity> groups;
+    private List<GroupsEntity> groups;
 
-    public UsersEntity(UUID userId, String name, String sName, Role role) {
+    public UsersEntity(UUID userId, String name, String sName, String role) {
         this.userId = userId;
         this.name = name;
         this.sName = sName;
@@ -57,7 +57,7 @@ public class UsersEntity {
         return sName;
     }
 
-    public Role getRole() {
+    public String getRole() {
         return role;
     }
 

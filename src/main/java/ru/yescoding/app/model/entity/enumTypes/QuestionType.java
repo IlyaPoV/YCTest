@@ -1,4 +1,4 @@
-package ru.yescoding.app.model.EnumTypes;
+package ru.yescoding.app.model.entity.enumTypes;
 
 public enum QuestionType {
     SELECT("select", "Выбор"),

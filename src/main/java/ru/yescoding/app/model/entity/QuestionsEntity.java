@@ -1,6 +1,6 @@
 package ru.yescoding.app.model.entity;
 
-import ru.yescoding.app.model.EnumTypes.QuestionType;
+import ru.yescoding.app.model.entity.enumTypes.QuestionType;
 
 import javax.persistence.*;
 import java.util.List;
@@ -24,8 +24,8 @@ public class QuestionsEntity {
     @Column(name = "question_text")
     private String questionText;
 
-    @Column(name = "type")
-    private QuestionType type;
+    @Column(name = "q_type")
+    private String q_type;
 
     @JoinColumn(name = "question_id", foreignKey = @ForeignKey(name = "fk_questions"))
     @OneToMany(targetEntity = AnswersEntity.class)
@@ -36,14 +36,14 @@ public class QuestionsEntity {
     private List<TestHistoryAnswersEntity> testHistoriesAnswer;
 
     @ManyToMany(mappedBy = "questions")
-    List<TestsEntity> tests;
+    private List<TestsEntity> tests;
 
-    public QuestionsEntity(UUID questionId, UUID themeId, int points, String questionText, QuestionType type) {
+    public QuestionsEntity(UUID questionId, UUID themeId, int points, String questionText, String q_type) {
         this.questionId = questionId;
         this.themeId = themeId;
         this.points = points;
         this.questionText = questionText;
-        this.type = type;
+        this.q_type = q_type;
     }
 
     public QuestionsEntity(){}
@@ -64,8 +64,8 @@ public class QuestionsEntity {
         return questionText;
     }
 
-    public QuestionType getType() {
-        return type;
+    public String getType() {
+        return q_type;
     }
 
     public List<AnswersEntity> getAnswers() {

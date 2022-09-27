@@ -23,13 +23,13 @@ public class TestsEntity {
     @OneToMany(targetEntity = TestHistoriesEntity.class)
     private List<TestHistoriesEntity> testHistories;
 
-    @ManyToMany(targetEntity = QuestionsEntity.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(targetEntity = QuestionsEntity.class)
     @JoinTable(
             name = "test_i_questions",
             joinColumns = {@JoinColumn(name = "test_id", foreignKey = @ForeignKey(name = "fk_tests"))},
             inverseJoinColumns = {@JoinColumn(name = "question_id", foreignKey = @ForeignKey(name = "fk_questions"))}
     )
-    List<QuestionsEntity> questions;
+    private List<QuestionsEntity> questions;
 
     public TestsEntity(UUID testId, String title, UUID subjectId) {
         this.testId = testId;

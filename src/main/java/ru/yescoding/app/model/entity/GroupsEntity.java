@@ -20,7 +20,7 @@ public class GroupsEntity {
     private UUID subjectId;
 
     @ManyToMany(mappedBy = "groups")
-    List<UsersEntity> users;
+    private List<UsersEntity> users;
 
     public GroupsEntity(UUID groupId, int grade, UUID subjectId) {
         this.groupId = groupId;

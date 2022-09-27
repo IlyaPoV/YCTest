@@ -28,12 +28,12 @@ public class SubjectsEntity {
     @OneToMany(targetEntity = TestsEntity.class)
     private List<TestsEntity> tests;
 
-    void SubjectsEntity(UUID subjectId, String title) {
+    public void SubjectsEntity(UUID subjectId, String title) {
         this.subjectId = subjectId;
         this.title = title;
     }
 
-    void SubjectsEntity(){}
+    public void SubjectsEntity(){}
 
     public UUID getSubjectId() {
         return subjectId;

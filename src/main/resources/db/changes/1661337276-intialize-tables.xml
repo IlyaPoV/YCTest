@@ -10,19 +10,44 @@
             SELECT 1 FROM pg_extension WHERE extname = 'uuid-ossp'
         </sqlCheck>
     </preConditions>
-    <changeSet id="create-table-answers" author="TalankinND">
+    <changeSet id="create-table-users" author="TalankinND">
         <sql>
-            CREATE TABLE if not exists answers (
-            answer_id uuid NOT NULL default uuid_generate_v4(),
-            question_id uuid NULL,
-            is_right bool NULL,
-            answer_text varchar NULL,
-            CONSTRAINT answers_pkey PRIMARY KEY (answer_id),
-            CONSTRAINT fk_questions FOREIGN KEY (question_id) REFERENCES questions(question_id)
+            CREATE TABLE if not exists users (
+            user_id uuid NOT NULL default uuid_generate_v4(),
+            name varchar NULL,
+            sname varchar NULL,
+            role varchar NULL,
+            CONSTRAINT users_pkey PRIMARY KEY (user_id)
             );
         </sql>
         <rollback>
-            drop table if exists answers
+            drop table if exists users;
+        </rollback>
+    </changeSet>
+    <changeSet id="create-table-subjects" author="TalankinND">
+        <sql>
+            CREATE TABLE if not exists subjects (
+            subject_id uuid NOT NULL default uuid_generate_v4(),
+            title varchar NULL,
+            CONSTRAINT subjects_pkey PRIMARY KEY (subject_id)
+            );
+        </sql>
+        <rollback>
+            drop table if exists subjects;
+        </rollback>
+    </changeSet>
+    <changeSet id="create-table-tests" author="TalankinND">
+        <sql>
+            CREATE TABLE if not exists tests (
+            test_id uuid NOT NULL default uuid_generate_v4(),
+            title varchar NULL,
+            subject_id uuid,
+            CONSTRAINT tests_pkey PRIMARY KEY (test_id),
+            CONSTRAINT fk_subjects FOREIGN KEY (subject_id) REFERENCES subjects(subject_id)
+            );
+        </sql>
+        <rollback>
+            drop table if exists tests;
         </rollback>
     </changeSet>
     <changeSet id="create-table-groups" author="TalankinND">
@@ -40,6 +65,20 @@
             drop table if exists groups;
         </rollback>
     </changeSet>
+    <changeSet id="create-table-themes" author="TalankinND">
+        <sql>
+            CREATE TABLE if not exists themes (
+            theme_id uuid NOT NULL default uuid_generate_v4(),
+            subject_id uuid NULL,
+            title varchar NULL,
+            CONSTRAINT themes_pkey PRIMARY KEY (theme_id),
+            CONSTRAINT fk_subjects FOREIGN KEY (subject_id) REFERENCES subjects(subject_id)
+            );
+        </sql>
+        <rollback>
+            drop table if exists themes;
+        </rollback>
+    </changeSet>
     <changeSet id="create-table-questions" author="TalankinND">
         <sql>
             CREATE TABLE if not exists questions (
@@ -47,7 +86,7 @@
             theme_id uuid NULL,
             points int4 NULL,
             question_text varchar NULL,
-            type varchar NULL,
+            q_type varchar NULL,
             CONSTRAINT questions_pkey PRIMARY KEY (question_id),
             CONSTRAINT fk_themes FOREIGN KEY (theme_id) REFERENCES themes(theme_id)
             );
@@ -56,16 +95,19 @@
             drop table if exists questions;
         </rollback>
     </changeSet>
-    <changeSet id="create-table-subjects" author="TalankinND">
+    <changeSet id="create-table-answers" author="TalankinND">
         <sql>
-            CREATE TABLE if not exists subjects (
-            subject_id uuid NOT NULL default uuid_generate_v4(),
-            title varchar NULL,
-            CONSTRAINT subjects_pkey PRIMARY KEY (subject_id)
+            CREATE TABLE if not exists answers (
+            answer_id uuid NOT NULL default uuid_generate_v4(),
+            question_id uuid NULL,
+            is_right bool NULL,
+            answer_text varchar NULL,
+            CONSTRAINT answers_pkey PRIMARY KEY (answer_id),
+            CONSTRAINT fk_questions FOREIGN KEY (question_id) REFERENCES questions(question_id)
             );
         </sql>
         <rollback>
-            drop table if exists subjects;
+            drop table if exists answers
         </rollback>
     </changeSet>
     <changeSet id="create-table-test_histories" author="TalankinND">
@@ -100,54 +142,12 @@
             drop table if exists test_history_answers
         </rollback>
     </changeSet>
-    <changeSet id="create-table-tests" author="TalankinND">
-        <sql>
-            CREATE TABLE if not exists tests (
-            test_id uuid NOT NULL default uuid_generate_v4(),
-            title varchar NULL,
-            subject_id uuid,
-            CONSTRAINT tests_pkey PRIMARY KEY (test_id)
-            CONSTRAINT fk_subjects FOREIGN KEY (subject_id) REFERENCES subjects(subject_id)
-            );
-        </sql>
-        <rollback>
-            drop table if exists tests;
-        </rollback>
-    </changeSet>
-    <changeSet id="create-table-themes" author="TalankinND">
-        <sql>
-            CREATE TABLE if not exists themes (
-            theme_id uuid NOT NULL default uuid_generate_v4(),
-            subject_id uuid NULL,
-            title varchar NULL,
-            CONSTRAINT themes_pkey PRIMARY KEY (theme_id),
-            CONSTRAINT fk_subjects FOREIGN KEY (subject_id) REFERENCES subjects(subject_id)
-            );
-        </sql>
-        <rollback>
-            drop table if exists themes;
-        </rollback>
-    </changeSet>
-    <changeSet id="create-table-users" author="TalankinND">
-        <sql>
-            CREATE TABLE users (
-            user_id uuid NOT NULL default uuid_generate_v4(),
-            name varchar NULL,
-            sname varchar NULL,
-            role varchar NULL,
-            CONSTRAINT users_pkey PRIMARY KEY (user_id)
-            );
-        </sql>
-        <rollback>
-            drop table if exists users;
-        </rollback>
-    </changeSet>
     <changeSet id="create-table-test_i_questions" author="TalankinND">
         <sql>
             CREATE TABLE if not exists test_i_questions (
             test_id uuid,
             question_id uuid,
-            CONSTRAINT fk_tests FOREIGN KEY (test_id) REFERENCES tests(test_id)
+            CONSTRAINT fk_tests FOREIGN KEY (test_id) REFERENCES tests(test_id),
             CONSTRAINT fk_questions FOREIGN KEY (question_id) REFERENCES questions(question_id)
             );
         </sql>
@@ -160,7 +160,7 @@
             CREATE TABLE if not exists user_i_group (
             group_id uuid,
             user_id uuid,
-            CONSTRAINT fk_groups FOREIGN KEY (group_id) REFERENCES groups(group_id)
+            CONSTRAINT fk_groups FOREIGN KEY (group_id) REFERENCES groups(group_id),
             CONSTRAINT fk_users FOREIGN KEY (user_id) REFERENCES users(user_id)
             );
         </sql>

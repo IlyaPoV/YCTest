@@ -1,6 +1,12 @@
 package ru.yescoding.app.model.entity;
 
+import org.springframework.data.relational.core.dialect.PostgresDialect;
+
 import javax.persistence.*;
+import javax.xml.crypto.Data;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -21,13 +27,13 @@ public class TestHistoriesEntity {
     private UUID testId;
 
     @Column(name = "passing_date")
-    private Date passingDate;
+    private LocalDate passingDate;
 
     @JoinColumn(name = "test_histories_id", foreignKey = @ForeignKey(name = "fk_test_histories"))
     @OneToMany(targetEntity = TestHistoryAnswersEntity.class)
     private List<TestHistoryAnswersEntity> testHistoryAnswers;
 
-    public TestHistoriesEntity(UUID testHistoriesId, UUID userId, UUID testId, Date passingDate) {
+    public TestHistoriesEntity(UUID testHistoriesId, UUID userId, UUID testId, LocalDate passingDate) {
         this.testHistoriesId = testHistoriesId;
         this.userId = userId;
         this.testId = testId;
@@ -48,7 +54,7 @@ public class TestHistoriesEntity {
         return testId;
     }
 
-    public Date getPassingDate() {
+    public LocalDate getPassingDate() {
         return passingDate;
     }
 

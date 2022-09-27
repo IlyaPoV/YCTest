@@ -12,38 +12,35 @@ public class TestHistoryAnswersEntity {
     @Column(name = "test_histories_id")
     private CompositeTestHistoryAnswersId compositeTestHistoryAnswersId;
 
-    @Column(name = "answer_id")
+    @Column(name = "answer_id", insertable = false, updatable = false)
     private UUID answerId;
 
-    @Column(name = "question_id")
+    @Column(name = "question_id", insertable = false, updatable = false)
     private UUID questionId;
 
-    @Column(name = "test_histories_id")
+    @Column(name = "test_histories_id", insertable = false, updatable = false)
     private UUID testHistoriesId;
 
     @ManyToOne
-    @JoinColumn(name = "test_histories_id")
+    @JoinColumn(name = "test_histories_id", insertable = false, updatable = false)
     private TestHistoriesEntity testHistories;
 
     @ManyToOne
-    @JoinColumn(name = "answer_id")
+    @JoinColumn(name = "answer_id", insertable = false, updatable = false)
     private AnswersEntity answers;
 
     @ManyToOne
-    @JoinColumn(name = "question_id")
+    @JoinColumn(name = "question_id", insertable = false, updatable = false)
     private QuestionsEntity questions;
 
     @Embeddable
     private static class CompositeTestHistoryAnswersId implements Serializable {
-        @Id
         @Column(name = "test_histories_id")
         private UUID testHistoriesId;
 
-        @Id
         @Column(name = "answer_id")
         private UUID answerId;
 
-        @Id
         @Column(name = "question_id")
         private UUID questionId;
 

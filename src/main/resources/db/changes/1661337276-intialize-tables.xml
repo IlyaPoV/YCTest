@@ -3,20 +3,171 @@
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
-    <preConditions onErrorMessage="Missing extension &quot;uuid-ossp&quot;!
-                   For PostgreSQL execute: CREATE EXTENSION IF NOT EXISTS &quot;uuid-ossp&quot;;">
+    <preConditions
+            onErrorMessage="Missing extension &quot;uuid-ossp&quot;!
+            For PostgreSQL execute: CREATE EXTENSION IF NOT EXISTS &quot;uuid-ossp&quot;;">
         <sqlCheck expectedResult="1" >
             SELECT 1 FROM pg_extension WHERE extname = 'uuid-ossp'
         </sqlCheck>
     </preConditions>
-    <changeSet id="init-table" author="m.bondarovich">
+    <changeSet id="create-table-users" author="TalankinND">
         <sql>
-            create table test_table(
-                test_id    uuid    NOT NULL DEFAULT uuid_generate_v4() PRIMARY KEY
+            CREATE TABLE if not exists public.users (
+            user_id uuid NOT NULL default uuid_generate_v4(),
+            name varchar NULL,
+            sname varchar NULL,
+            role varchar NULL,
+            CONSTRAINT users_pkey PRIMARY KEY (user_id)
             );
         </sql>
         <rollback>
-            DROP TABLE test_table;
+            drop table if exists public.users;
+        </rollback>
+    </changeSet>
+    <changeSet id="create-table-subjects" author="TalankinND">
+        <sql>
+            CREATE TABLE if not exists public.subjects (
+            subject_id uuid NOT NULL default uuid_generate_v4(),
+            title varchar NULL,
+            CONSTRAINT subjects_pkey PRIMARY KEY (subject_id)
+            );
+        </sql>
+        <rollback>
+            drop table if exists public.subjects;
+        </rollback>
+    </changeSet>
+    <changeSet id="create-table-tests" author="TalankinND">
+        <sql>
+            CREATE TABLE if not exists public.tests (
+            test_id uuid NOT NULL default uuid_generate_v4(),
+            title varchar NULL,
+            subject_id uuid,
+            CONSTRAINT tests_pkey PRIMARY KEY (test_id),
+            CONSTRAINT fk_subjects FOREIGN KEY (subject_id) REFERENCES subjects(subject_id)
+            );
+        </sql>
+        <rollback>
+            drop table if exists public.tests;
+        </rollback>
+    </changeSet>
+    <changeSet id="create-table-groups" author="TalankinND">
+        <sql>
+            CREATE TABLE if not exists public."groups" (
+            group_id uuid NOT NULL default uuid_generate_v4(),
+            subject_id uuid NULL,
+
+            grade int4 NULL,
+            CONSTRAINT groups_pkey PRIMARY KEY (group_id),
+            CONSTRAINT fk_subjects FOREIGN KEY (subject_id) REFERENCES subjects(subject_id)
+            );
+        </sql>
+        <rollback>
+            drop table if exists public."groups";
+        </rollback>
+    </changeSet>
+    <changeSet id="create-table-themes" author="TalankinND">
+        <sql>
+            CREATE TABLE if not exists public.themes (
+            theme_id uuid NOT NULL default uuid_generate_v4(),
+            subject_id uuid NULL,
+            title varchar NULL,
+            CONSTRAINT themes_pkey PRIMARY KEY (theme_id),
+            CONSTRAINT fk_subjects FOREIGN KEY (subject_id) REFERENCES subjects(subject_id)
+            );
+        </sql>
+        <rollback>
+            drop table if exists themes;
+        </rollback>
+    </changeSet>
+    <changeSet id="create-table-questions" author="TalankinND">
+        <sql>
+            CREATE TABLE if not exists public.questions (
+            question_id uuid NOT NULL default uuid_generate_v4(),
+            theme_id uuid NULL,
+            points int4 NULL,
+            question_text varchar NULL,
+            q_type varchar NULL,
+            CONSTRAINT questions_pkey PRIMARY KEY (question_id),
+            CONSTRAINT fk_themes FOREIGN KEY (theme_id) REFERENCES themes(theme_id)
+            );
+        </sql>
+        <rollback>
+            drop table if exists public.questions;
+        </rollback>
+    </changeSet>
+    <changeSet id="create-table-answers" author="TalankinND">
+        <sql>
+            CREATE TABLE if not exists public.answers (
+            answer_id uuid NOT NULL default uuid_generate_v4(),
+            question_id uuid NULL,
+            is_right bool NULL,
+            answer_text varchar NULL,
+            CONSTRAINT answers_pkey PRIMARY KEY (answer_id),
+            CONSTRAINT fk_questions FOREIGN KEY (question_id) REFERENCES questions(question_id)
+            );
+        </sql>
+        <rollback>
+            drop table if exists public.answers
+        </rollback>
+    </changeSet>
+    <changeSet id="create-table-test_histories" author="TalankinND">
+        <sql>
+            CREATE TABLE if not exists public.test_histories (
+            test_histories_id uuid NOT NULL default uuid_generate_v4(),
+            user_id uuid NULL,
+            test_id uuid NULL,
+            passing_date date NULL,
+            CONSTRAINT test_histories_pkey PRIMARY KEY (test_histories_id),
+            CONSTRAINT fk_tests FOREIGN KEY (test_id) REFERENCES tests(test_id),
+            CONSTRAINT fk_users FOREIGN KEY (user_id) REFERENCES users(user_id)
+            );
+        </sql>
+        <rollback>
+            drop table if exists public.test_histories;
+        </rollback>
+    </changeSet>
+    <changeSet id="create-table-test_history_answers" author="TalankinND">
+        <sql>
+            CREATE TABLE if not exists public.test_history_answers (
+            test_histories_id uuid NULL,
+            question_id uuid NULL,
+            answer_id uuid NULL,
+            CONSTRAINT test_history_answers_pkey PRIMARY KEY (test_histories_id, question_id, answer_id),
+            CONSTRAINT fk_test_histories FOREIGN KEY (test_histories_id) REFERENCES test_histories(test_histories_id),
+            CONSTRAINT fk_answers FOREIGN KEY (answer_id) REFERENCES answers(answer_id),
+            CONSTRAINT fk_questions FOREIGN KEY (question_id) REFERENCES questions(question_id)
+            );
+        </sql>
+        <rollback>
+            drop table if exists public.test_history_answers
+        </rollback>
+    </changeSet>
+    <changeSet id="create-table-test_i_questions" author="TalankinND">
+        <sql>
+            CREATE TABLE if not exists public.test_i_questions (
+            test_id uuid,
+            question_id uuid,
+            CONSTRAINT fk_tests FOREIGN KEY (test_id) REFERENCES tests(test_id),
+            CONSTRAINT fk_questions FOREIGN KEY (question_id) REFERENCES questions(question_id),
+            CONSTRAINT pk_test_i_questions PRIMARY KEY (test_id, question_id)
+            );
+        </sql>
+        <rollback>
+            drop table if exists public.test_i_questions;
+        </rollback>
+    </changeSet>
+    <changeSet id="create-table-user_i_group" author="TalankinND">
+        <sql>
+            CREATE TABLE if not exists public.user_i_group (
+            group_id uuid,
+            user_id uuid,
+            CONSTRAINT fk_groups FOREIGN KEY (group_id) REFERENCES groups(group_id),
+            CONSTRAINT fk_users FOREIGN KEY (user_id) REFERENCES users(user_id),
+            CONSTRAINT pk_user_i_group PRIMARY KEY (group_id, user_id)
+            );
+        </sql>
+        <rollback>
+            drop table if public.exists user_i_group;
         </rollback>
     </changeSet>
 </databaseChangeLog>

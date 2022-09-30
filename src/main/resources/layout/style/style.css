@@ -1,10 +1,12 @@
+@import './font.css';
+
 body{
     margin: 0;
     padding: 0;
     --violet: #7749F8;
     --light-violet: #E5DEF9;
     --green: #08E9C7;
-    --good: #36FF3E;
+    --good: #2ed033;
     --bad: #FF3642;
     --montseratt: 'Montserrat', Arial, sans-serif;
     --opensans: 'Open Sans', Arial, sans-serif;
@@ -647,5 +649,15 @@ h1, h2, h3, h4, p, ul, li {
 
 .modal__negative-btn {
     background: transparent;
+}
 
+
+/* groupsExersisePage */
+
+.exersise-list__item--complete .exersise__item-container:hover {
+    opacity: 1;
+}
+
+.exersise-list__item--complete {
+    opacity: .4;
 }

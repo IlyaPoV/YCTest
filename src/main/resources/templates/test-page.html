@@ -10,6 +10,7 @@
             Тест №3. Подключение и использование пакетов Python
         </h1>
         <form id="testForm" action="http://smash.yescoding.ru/dasdads" method="post">
+            <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
             <ul class="test__question-list">
                 <li class="question-list__item">
                     <h4>Какой тэг поможет позволяет обозначить навигационный раздел со ссылками на другие страницы или

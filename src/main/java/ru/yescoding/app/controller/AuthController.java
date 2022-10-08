@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class AuthController {
     @GetMapping("/authentication")
-    public String getAuth(){
+    public String getAuth() {
         return "auth-page";
     }
 }

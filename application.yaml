@@ -1,6 +1,6 @@
 app-config:
   server:
-    port: 8443
+    port: 8080
   database:
     host:  localhost
     port : 5432

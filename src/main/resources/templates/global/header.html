@@ -20,9 +20,9 @@
             <p>Константин Константиномпольский</p>
         </div>
         <div class="header__exit-wrap">
-            <button>
-                Выход
-            </button>
+            <form method="POST" th:action="@{/logout}">
+                <button type="submit">Выход</button>
+            </form>
         </div>
     </div>
 </header>

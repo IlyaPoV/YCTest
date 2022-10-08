@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<header class="main-header" th:fragment="header">
+    <div class="header__wrap container">
+        <div class="logo-mockup"></div>
+        <nav class="header__nav">
+            <ul class="nav-links__list">
+                <li class="nav-list__item" th:classappend="${'nav-list__item--current'}">
+                    <a th:href="@{/exercises}">Задания</a> <!--TODO      th:classappend="${isActive} ? 'nav-list__item--current' : ''"-->
+                </li>
+                <li class="nav-list__item" th:classappend="${'nav-list__item--current'}">
+                    <a th:href="@{/successes}">Успехи</a> <!--TODO-->
+                </li>
+                <li class="nav-list__item" th:classappend="${'nav-list__item--current'}">
+                    <a th:href="@{/groups}">Группы</a> <!--TODO-->
+                </li>
+            </ul>
+        </nav>
+        <div class="header__name"> <!--TODO-->
+            <p>Константин Константиномпольский</p>
+        </div>
+        <div class="header__exit-wrap">
+            <button>
+                Выход
+            </button>
+        </div>
+    </div>
+</header>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{global/head :: head(~{global/head :: title-of-succes-page})}"><title></title></head>
+<body>
+<header th:replace="~{global/header :: header}"></header>
+
+<main>
+    <div class="container container--exercise">
+        <h1 class="headline exercise-page__headline">
+            Успехи
+        </h1>
+
+        <ul class="succes__list">
+            <li class="success-list__item">
+                <div class="success-item__column">
+                    <h3 class="success-item__headline">
+                        Тест №3. <br>Функции и циклы
+                    </h3>
+                    <div class="success-item__result-wrap">
+                            <span class="success-item__amount">
+                                9/12
+                            </span>
+                        <div class="success-item__divider"></div>
+                        <span class="success-item__percent success-item__percent--good">
+                                75%
+                            </span>
+                    </div>
+                </div>
+                <div class="success-item__column">
+                    <p class="success-item__course-name">
+                        Моб. приложения
+                    </p>
+                    <p class="success-item__date">
+                        22.02.2022
+                    </p>
+                </div>
+            </li>
+
+            <li class="success-list__item">
+                <div class="success-item__column">
+                    <h3 class="success-item__headline">
+                        Тест №1. <br>Переменные и ветвления
+                    </h3>
+                    <div class="success-item__result-wrap">
+                            <span class="success-item__amount">
+                                6/12
+                            </span>
+                        <div class="success-item__divider"></div>
+                        <span class="success-item__percent success-item__percent--bad ">
+                                50%
+                            </span>
+                    </div>
+                </div>
+                <div class="success-item__column">
+                    <p class="success-item__course-name">
+                        Python
+                    </p>
+                    <p class="success-item__date">
+                        19.08.2022
+                    </p>
+                </div>
+            </li>
+
+            <li class="success-list__item">
+                <div class="success-item__column">
+                    <h3 class="success-item__headline">
+                        Тест №4. <br>Итоговый
+                    </h3>
+                    <div class="success-item__result-wrap">
+                            <span class="success-item__amount">
+                                12/12
+                            </span>
+                        <div class="success-item__divider"></div>
+                        <span class="success-item__percent success-item__percent--absolute">
+                                100%
+                            </span>
+                    </div>
+                </div>
+                <div class="success-item__column">
+                    <p class="success-item__course-name">
+                        Python
+                    </p>
+                    <p class="success-item__date">
+                        19.08.2022
+                    </p>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+</main>
+<footer th:replace="~{global/footer :: footer}"></footer>
+</body>
+</html>

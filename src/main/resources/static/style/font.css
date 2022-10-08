@@ -3,7 +3,7 @@
     font-style: normal;
 	font-weight: 400;
 	src: local('Montserrat'),
-        url(../fonts/Montserrat-Regular.ttf); 
+        url(fonts/Montserrat-Regular.ttf);
 }
 
 @font-face {
@@ -11,7 +11,7 @@
     font-style: normal;
 	font-weight: 700;
 	src: local('Montserrat'),
-        url(../fonts/Montserrat-Bold.ttf); 
+        url(fonts/Montserrat-Bold.ttf);
 }
 
 @font-face {
@@ -19,7 +19,7 @@
     font-style: normal;
 	font-weight: 900;
 	src: local('Montserrat'),
-        url(../fonts/Montserrat-Black.ttf); 
+        url(fonts/Montserrat-Black.ttf);
 }
 
 @font-face {
@@ -27,7 +27,7 @@
     font-style: normal;
 	font-weight: 400;
 	src: local('Montserrat'),
-        url(../fonts/OpenSans-Regular.ttf); 
+        url(fonts/OpenSans-Regular.ttf);
 }
 
 @font-face {
@@ -35,5 +35,5 @@
     font-style: normal;
 	font-weight: 700;
 	src: local('Montserrat'),
-        url(../fonts/OpenSans-Bold.ttf); 
+        url(fonts/OpenSans-Bold.ttf);
 }

@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class GroupExersicePageController {
-    @GetMapping("/groupExercise")
-    public String getGroupExersicePage(){
-        return "groupExercise";
+    @GetMapping("/group-exercise")
+    public String getGroupExercisePage(){
+        return "groups-exercise-page";
     }
 }

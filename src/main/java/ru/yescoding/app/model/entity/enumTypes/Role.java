@@ -5,7 +5,6 @@ public enum Role {
     STUDENT("student", "Студент"),
     ADMINISTRATOR("administrator","Администратор");
 
-
     private final String code;
 
     private final String ruCode;

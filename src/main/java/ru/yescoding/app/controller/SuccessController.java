@@ -2,14 +2,13 @@ package ru.yescoding.app.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class SuccController {
+public class SuccessController {
 
-    @GetMapping("/succes")
+    @GetMapping("/successes")
     public String showSuccForm(){
-        return "success";
+        return "success-page";
     }
 
 }

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{global/head :: head(~{global/head :: title-of-auth-page})}"><title></title></head>
+<body>
+    <main>
+        <div class="container main-container">
+            <div class="logo__line">
+                <div class="logo-mockup"></div>
+            </div>
+            <div class="main-headline__wrap">
+                <h1 class="headline">Авторизация в системе тестирования</h1>
+            </div>
+
+            <form id="auth__form" method="post" action="">
+                <div class="auth-form__wrap">
+                    <input class="auth-form__input-field" type="email" name="email" placeholder="Введите e-mail для входа">
+                    <input class="auth-form__input-field" type="password" name="password" placeholder="Введите пароль">
+                    <button class="auth-page__submit-btn" type="submit">Вход</button>
+                </div>
+            </form>
+
+            <p class="auth__hint">Если у вас нет логина и пароля для входа обратитесь к менеджеру или преподавателю</p>
+        </div>
+    </main>
+    <footer th:replace="~{global/footer :: footer}"></footer>
+</body>
+</html>

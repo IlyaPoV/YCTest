@@ -5,9 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class GroupController {
-
-    @GetMapping("/group")
+    @GetMapping("/groups")
     public String getGroup(){
-        return "group";
+        return "group-page";
     }
 }

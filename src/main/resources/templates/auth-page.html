@@ -13,7 +13,6 @@
             <a th:href="@{/register}">here</a> to register.</p>
 
             <form id="auth__form" method="post" th:action="@{/authenticate}">
-                <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
                 <div class="auth-form__wrap">
                     <input class="auth-form__input-field" type="email" name="username" placeholder="Введите e-mail для входа">
                     <input class="auth-form__input-field" type="password" name="password" placeholder="Введите пароль">

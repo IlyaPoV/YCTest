@@ -1,9 +1,9 @@
 package ru.yescoding.app.model.entity.enumTypes;
 
 public enum Role {
-    TEACHER("teacher","Преподаватель"),
-    STUDENT("student", "Студент"),
-    ADMINISTRATOR("administrator","Администратор");
+    TEACHER("ROLE_MODERATOR","Преподаватель"),
+    STUDENT("ROLE_USER", "Студент"),
+    ADMINISTRATOR("ROLE_ADMIN","Администратор");
 
     private final String code;
 

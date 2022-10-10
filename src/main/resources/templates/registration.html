@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> <!--  TODO remove-->
 <html lang="ru"
       xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -7,17 +7,14 @@
 <body>
 <h1>Регистрация</h1>
 <form method="POST" th:action="@{/register}" id="registerForm">
-    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
     <label>Username: </label>
     <input type="text" name="username"/><br/>
     <label>Password: </label>
     <input type="password" name="password"/><br/>
-    <label>Confirm password: </label>
-    <input type="password" name="confirm"/><br/>
-    <label>Full name: </label>
-    <input type="text" name="fullname"/><br/>
-    <label>Phone: </label>
-    <input type="text" name="phone"/><br/>
+    <label>firstName: </label>
+    <input type="text" name="firstName"/><br/>
+    <label>secondName: </label>
+    <input type="text" name="secondName"/><br/>
     <input type="submit" value="Register"/>
 </form>
 </body>

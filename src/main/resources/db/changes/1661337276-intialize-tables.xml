@@ -13,9 +13,10 @@
     <changeSet id="create-table-users" author="TalankinND">
         <sql>
             CREATE TABLE if not exists public.users (
-            user_id uuid NOT NULL default uuid_generate_v4(),
-            name varchar NULL,
-            sname varchar NULL,
+            user_id varchar NOT NULL,
+            password varchar NOT NULL,
+            first_name varchar NULL,
+            second_name varchar NULL,
             role varchar NULL,
             CONSTRAINT users_pkey PRIMARY KEY (user_id)
             );
@@ -114,7 +115,7 @@
         <sql>
             CREATE TABLE if not exists public.test_histories (
             test_histories_id uuid NOT NULL default uuid_generate_v4(),
-            user_id uuid NULL,
+            user_id varchar NULL,
             test_id uuid NULL,
             passing_date date NULL,
             CONSTRAINT test_histories_pkey PRIMARY KEY (test_histories_id),
@@ -160,7 +161,7 @@
         <sql>
             CREATE TABLE if not exists public.user_i_group (
             group_id uuid,
-            user_id uuid,
+            user_id varchar,
             CONSTRAINT fk_groups FOREIGN KEY (group_id) REFERENCES groups(group_id),
             CONSTRAINT fk_users FOREIGN KEY (user_id) REFERENCES users(user_id),
             CONSTRAINT pk_user_i_group PRIMARY KEY (group_id, user_id)

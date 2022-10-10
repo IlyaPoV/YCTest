@@ -1,40 +1,37 @@
-package ru.yescoding.app.model.entity;
+package ru.yescoding.app.security.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import ru.yescoding.app.model.entity.UsersEntity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import java.util.Collection;
 import java.util.List;
-import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-@Entity
-public class UserEntity implements UserDetails {
+public class UserDetailsImpl implements UserDetails {
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
     private String username;
     private String password;
-    private String fullName;
-    private String contactInfo;
 
-    public UserEntity() {
-    }
+    private Collection<? extends GrantedAuthority> authorities;
 
-    public UserEntity(String username, String password, String fullName, String contactInfo) {
+    public UserDetailsImpl(String username, String password, Collection<? extends GrantedAuthority> authorities) {
         this.username = username;
         this.password = password;
-        this.fullName = fullName;
-        this.contactInfo = contactInfo;
+        this.authorities = authorities;
     }
 
-    public UUID getId() {
-        return id;
+    public static UserDetailsImpl build(UsersEntity user) {
+        List<GrantedAuthority> authorities = Stream.of(user.getRole())
+                .map(role -> new SimpleGrantedAuthority(role.getCode()))
+                .collect(Collectors.toList());
+
+        return new UserDetailsImpl(
+                user.getUserId(),
+                user.getPassword(),
+                authorities);
     }
 
     public void setUsername(String username) {
@@ -45,20 +42,8 @@ public class UserEntity implements UserDetails {
         this.password = password;
     }
 
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public String getContactInfo() {
-        return contactInfo;
-    }
-
-    public void setContactInfo(String contactInfo) {
-        this.contactInfo = contactInfo;
+    public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
+        this.authorities = authorities;
     }
 
     @Override

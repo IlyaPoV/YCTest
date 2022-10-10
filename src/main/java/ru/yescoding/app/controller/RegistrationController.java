@@ -7,30 +7,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ru.yescoding.app.convert.DtoConverter;
 import ru.yescoding.app.model.dto.RegistrationForm;
 import ru.yescoding.app.repository.UserRepository;
+import ru.yescoding.app.service.SecurityService;
 
 @Controller
-@RequestMapping("/register")
 public class RegistrationController {
-    private final UserRepository userRepository;
-    private final DtoConverter converter;
+    private final SecurityService securityService;
 
-    public RegistrationController(
-            UserRepository userRepository,
-            DtoConverter converter) {
-        this.userRepository = userRepository;
-        this.converter = converter;
+    public RegistrationController(SecurityService securityService) {
+        this.securityService = securityService;
     }
 
-    @GetMapping
-    public String registerForm() {
+    @GetMapping("/register")
+    public String getRegistration() {
         return "registration";
     }
 
-    @PostMapping
+    @PostMapping("/register") //localhost:8080/register
     public String processRegistration(RegistrationForm form) {
-        userRepository.save(
-                converter.convertUser(form)
-        );
+        securityService.registerNewUser(form);
         return "redirect:/authentication";
     }
 }

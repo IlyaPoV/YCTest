@@ -9,6 +9,13 @@ app-config:
     #     local
     password: 1234
 
+
+  auth:
+    audience: "yc-test-platform-user"
+    issuer: "yc-test-platform"
+    secret-key: "a-very-secret-key"
+    algorithm: "HS256"
+
 spring:
   profiles:
     active: dev

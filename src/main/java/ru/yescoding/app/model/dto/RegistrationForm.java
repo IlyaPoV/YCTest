@@ -3,48 +3,45 @@ package ru.yescoding.app.model.dto;
 public class RegistrationForm {
     private String username;
     private String password;
-    private String fullName;
-    private String contactInfo;
+    private String firstName;
+    private String secondName;
 
-    public RegistrationForm() {
-    }
-
-    public RegistrationForm(String username, String password, String fullName, String contactInfo) {
+    public RegistrationForm(String username, String password, String firstName, String secondName) {
         this.username = username;
         this.password = password;
-        this.fullName = fullName;
-        this.contactInfo = contactInfo;
+        this.firstName = firstName;
+        this.secondName = secondName;
     }
 
     public String getUsername() {
         return username;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public String getContactInfo() {
-        return contactInfo;
-    }
-
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setContactInfo(String contactInfo) {
-        this.contactInfo = contactInfo;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getSecondName() {
+        return secondName;
+    }
+
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
     }
 }

@@ -2,11 +2,9 @@ package ru.yescoding.app.security.model;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.ConstructorBinding;
-import org.springframework.stereotype.Component;
 
 @ConfigurationProperties(prefix = "app-config.auth")
 @ConstructorBinding
-//@Component
 public class JWTConfig {
     private final String audience;
     private final String issuer;

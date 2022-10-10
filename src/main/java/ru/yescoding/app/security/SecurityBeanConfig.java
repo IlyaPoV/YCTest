@@ -1,5 +1,8 @@
 package ru.yescoding.app.security;
 
+import org.apache.tomcat.util.http.LegacyCookieProcessor;
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
+import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -42,5 +45,14 @@ public class SecurityBeanConfig {
     public PasswordEncoder passwordEncoder() {
         //        return new BCryptPasswordEncoder();
         return NoOpPasswordEncoder.getInstance(); //TODO remove after tests
+    }
+
+    @Bean
+    public WebServerFactoryCustomizer<TomcatServletWebServerFactory> webServerFactoryCustomizer() {
+        return factory -> {
+            if (factory instanceof TomcatServletWebServerFactory) {
+                factory.addContextCustomizers(context -> context.setCookieProcessor(new LegacyCookieProcessor()));
+            }
+        };
     }
 }

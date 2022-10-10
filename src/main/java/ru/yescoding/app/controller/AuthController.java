@@ -9,4 +9,6 @@ public class AuthController {
     public String getAuth() {
         return "auth-page";
     }
+
+
 }

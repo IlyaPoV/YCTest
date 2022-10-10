@@ -24,7 +24,7 @@ sendFormBtn?.addEventListener('click', (evt)=>{
 })
 
 const ajaxSend = async (formData) => {
-    const response = await fetch("", // здесь нужно добавить адрес, куда форму слать 
+    const response = await fetch("localhost:8080/authenticate", // здесь нужно добавить адрес, куда форму слать
     {
         method: "POST",
         body: formData

@@ -113,7 +113,7 @@ public class TokenServiceImpl implements TokenService {
 
     @Override
     public String generateRefreshToken(String userId) {
-        return generateToken(userId, 60 * 24);
+        return generateToken(userId, 60 * 48);
     }
 
     private String generateToken(String userId, int duration) {

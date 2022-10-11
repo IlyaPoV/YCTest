@@ -56,7 +56,6 @@ public class TokenController {
         );
         cookie.setHttpOnly(true);
         response.addCookie(cookie);
-
 //
 //        new ObjectMapper().writeValue(
 //                response.getOutputStream(),

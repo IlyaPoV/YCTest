@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<footer class="container main-footer" th:fragment="footer">
+    <div class="footer-wrap">
+        <div class="footer__column footer__copyright">
+            <div class="logo-mockup"></div>
+            <p>©2022 yescoding</p>
+            <p>
+                <a class="footer__link" href="https://yescoding.ru/personal-data">
+                    Политика конфиденциальности (обработки персональных данных)
+                </a>
+            </p>
+        </div>
+        <div class="footer__column footer__hamster">
+            <div class="hamster-container">
+                <img th:src="@{/images/thinking_hamster.png}" alt="Хомяк маскот">
+            </div>
+        </div>
+        <div class="footer__column our-projects">
+            <h3 class="footer__headline">
+                Другие проекты
+            </h3>
+            <ul class="footer__project-links-list">
+                <li>
+                    <a class="footer__link" href="https://homing.yescoding.ru" target="_blank">homing.yescoding.ru</a>
+                </li>
+                <li>
+                    <a class="footer__link" href="https://yescoding.ru" target="_blank">yescoding.ru</a>
+                </li>
+                <li>
+                    <a class="footer__link" href="https://yescompany.ru" target="_blank">yescompany.ru</a>
+                </li>
+            </ul>
+        </div>
+        <div class="footer__column">
+            <h3 class="footer__headline">
+                Контакты
+            </h3>
+            <ul class="footer__project-links-list">
+                <li>
+                    <a class="footer__link" href="mailto:coding@yescoding.ru">coding@yescoding.ru</a>
+                </li>
+                <li>
+                    <a class="footer__link" href="t.me/yescoding">
+                        t.me/yescoding
+                    </a>
+                </li>
+                <li>
+                    <a class="footer__link" href="https://tiktok.com/@yescoding">
+                        @yescoding
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</footer>
+</html>

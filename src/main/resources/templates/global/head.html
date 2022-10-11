@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/style/style.css}">
+    <title th:replace="${title}"></title>
+</head>
+
+<title th:fragment="title-of-group-page">Группы | YCTests</title>
+<title th:fragment="title-of-exercise-page">Мои задания | YCTests</title>
+<title th:fragment="title-of-succes-page">Успехи | YCTests</title>
+<title th:fragment="title-of-test-page">Тест | YCTests</title>
+<title th:fragment="title-of-groups-exercise-page">Задания группы | YCTests</title>
+<title th:fragment="title-of-auth-page">YCTests | Вход</title>
+
+</html>

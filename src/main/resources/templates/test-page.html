@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{global/head :: head(~{global/head :: title-of-test-page})}"><title></title></head>
+<body>
+<header th:replace="~{global/header :: header}"></header>
+
+<main>
+    <div class="container container--exercise">
+        <h1 class="test-page__headline">
+            Тест №3. Подключение и использование пакетов Python
+        </h1>
+        <form id="testForm" action="http://smash.yescoding.ru/dasdads" method="post">
+            <ul class="test__question-list">
+                <li class="question-list__item">
+                    <h4>Какой тэг поможет позволяет обозначить навигационный раздел со ссылками на другие страницы или
+                        другие части страниц?</h4>
+                    <div class="question-item__variants-wrap">
+                        <div class="question-item__check-wrap">
+                            <input id="id11" name="id1" type="checkbox" value="&lta&gt">
+                            <label for="id11">
+                                &lta&gt
+                            </label>
+                        </div>
+                        <div class="question-item__check-wrap">
+                            <input id="id12" name="id1" type="checkbox" value="&ltp&gt">
+                            <label for="id12">
+                                &ltp&gt
+                            </label>
+                        </div>
+                        <div class="question-item__check-wrap">
+                            <input id="id13" name="id1" type="checkbox" value="&ltnav&gt">
+                            <label for="id13">
+                                &ltnav&gt
+                            </label>
+                        </div>
+                        <div class="question-item__check-wrap">
+                            <input id="id14" name="id1" type="checkbox" value="&ltdiv&gt">
+                            <label for="id14">
+                                &ltdiv&gt
+                            </label>
+                        </div>
+                    </div>
+                </li>
+                <li class="question-list__item question-list__item--variants">
+                    <h4>Какой тэг поможет позволяет обозначить навигационный раздел со ссылками на другие страницы или
+                        другие части страниц?</h4>
+                    <input name="id2" class="quesrtion-variant__text-input" type="text">
+                </li>
+                <li class="question-list__item">
+                    <h4>Какой тэг поможет позволяет обозначить навигационный раздел со ссылками на другие страницы или
+                        другие части страниц?</h4>
+                    <div class="question-item__variants-wrap question-item__variants-wrap--img">
+                        <div class="question-item__check-wrap">
+                            <input id="id31" name="id3" type="checkbox" value="id31">
+                            <label for="id31">
+                                <div class="question-variant__img-wrap">
+                                    <img src="../img/variants/id31.png" alt="">
+                                </div>
+                            </label>
+                        </div>
+                        <div class="question-item__check-wrap">
+                            <input id="id32" name="id3" autocomplete="off" type="checkbox" value="id32">
+                            <label for="id32">
+                                <div class="question-variant__img-wrap">
+                                    <img src="../img/variants/id32.png" alt="">
+                                </div>
+                            </label>
+                        </div>
+                        <div class="question-item__check-wrap">
+                            <input id="id33" name="id3" type="checkbox" value="id33">
+                            <label for="id33">
+                                <div class="question-variant__img-wrap">
+                                    <img src="../img/variants/id33.png" alt="">
+                                </div>
+                            </label>
+                        </div>
+                        <div class="question-item__check-wrap">
+                            <input id="id34" name="id3" type="checkbox" value="id34">
+                            <label for="id34">
+                                <div class="question-variant__img-wrap">
+                                    <img src="../img/variants/id34.png" alt="">
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="test-form__submit-wrap">
+                <button class="form-submit__btn">Завершить тестирование</button>
+            </div>
+        </form>
+    </div>
+</main>
+
+<div class="test__modal">
+    <h4>Вы уверены, что хотите завершить тестирование?</h4>
+    <button class="modal__postive-btn modal__btn">Да, завершить и отправить ответы</button>
+    <button class="modal__negative-btn modal__btn">Нет, вернуться к прохождению</button>
+</div>
+<footer th:replace="~{global/footer :: footer}"></footer>
+<script th:src="@{scripts/index.js}"></script>
+</body>
+</html>

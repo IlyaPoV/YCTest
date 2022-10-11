@@ -1,6 +1,6 @@
 app-config:
   server:
-    port: 8443
+    port: 8080
   database:
     host:  localhost
     port : 5432
@@ -9,9 +9,20 @@ app-config:
     #     local
     password: 1234
 
+
+  auth:
+    audience: "yc-test-platform-user"
+    issuer: "yc-test-platform"
+    secret-key: "a-very-secret-key"
+    algorithm: "HS256"
+
 spring:
   profiles:
     active: dev
 #    active: test
   jpa:
     show-sql: "${app-config.database.debug:false}"
+
+logging:
+  level:
+    root: INFO

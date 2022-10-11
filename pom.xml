@@ -43,7 +43,10 @@
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
-        <!--не забыть добавить security-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
@@ -54,6 +57,12 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.1</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -61,7 +70,48 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>ru.yescoding.app.YesCodingTestPlatformApplication</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>repackage</id>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                        <phase>package</phase>
+                    </execution>
+                </executions>
             </plugin>
+<!--            <plugin>-->
+<!--                <configuration>-->
+<!--                    <configLocation>codestyle/checkstyle.xml</configLocation>-->
+<!--                    <suppressionsLocation>codestyle/suppressions.xml</suppressionsLocation>-->
+<!--                    <consoleOutput>true</consoleOutput>-->
+<!--                    <failOnViolation>true</failOnViolation>-->
+<!--                    <violationSeverity>error</violationSeverity>-->
+<!--                    <failsOnError>true</failsOnError>-->
+<!--                </configuration>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-checkstyle-plugin</artifactId>-->
+<!--                <version>3.0.0</version>-->
+<!--                <dependencies>-->
+<!--                    <dependency>-->
+<!--                        <groupId>com.puppycrawl.tools</groupId>-->
+<!--                        <artifactId>checkstyle</artifactId>-->
+<!--                        <version>8.20</version>-->
+<!--                    </dependency>-->
+<!--                </dependencies>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>validate</id>-->
+<!--                        <phase>validate</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>check</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 

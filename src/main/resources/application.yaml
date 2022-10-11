@@ -1,5 +1,5 @@
 server:
-  port: "${app-config.server.port}"
+  port: "${app-config.server.port:8080}"
 
 logging:
   level:
@@ -14,15 +14,15 @@ spring:
     enabled: true
     change-log: "classpath:db.changelog-master.yaml"
   datasource:
-    url: "jdbc:postgresql://${app-config.database.host}:${app-config.database.port}/${app-config.database.dbname}"
-    username: "${app-config.database.username}"
-    password: "${app-config.database.password}"
+    url: "jdbc:postgresql://${app-config.database.host:localhost}:${app-config.database.port:5432}/${app-config.database.dbname:postgres}"
+    username: "${app-config.database.username:postgres}"
+    password: "${app-config.database.password:1234}"
     driver-class-name: org.postgresql.Driver
     type: com.zaxxer.hikari.HikariDataSource
   jpa:
     show-sql: "${app-config.database.debug:false}"
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
     properties:
       hibernate:
         format_sql: true

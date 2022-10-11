@@ -1,6 +1,5 @@
 package ru.yescoding.app.security.filter;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -11,12 +10,10 @@ import ru.yescoding.app.security.model.UserDetailsImpl;
 import ru.yescoding.app.service.TokenService;
 
 import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Map;
 
 @Configuration
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
@@ -25,6 +22,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     public JWTAuthenticationFilter(AuthenticationManager authenticationManager, TokenService tokenService) {
         super(authenticationManager);
         super.setFilterProcessesUrl("/authenticate");
+
         this.tokenService = tokenService;
     }
 
@@ -42,12 +40,12 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         );
         cookie.setHttpOnly(true);
         response.addCookie(cookie);
-        new ObjectMapper().writeValue(
-                response.getOutputStream(),
-                Map.of(
-                        AuthenticationConfigConstants.AUTH_ACCESS_TOKEN_HEADER,
-                        AuthenticationConfigConstants.TOKEN_PREFIX + tokenService.generateAccessToken(user.getUsername())
-                )
+        cookie = new Cookie(
+                AuthenticationConfigConstants.AUTH_ACCESS_TOKEN_HEADER,
+                AuthenticationConfigConstants.TOKEN_PREFIX + tokenService.generateAccessToken(user.getUsername())
         );
+        cookie.setHttpOnly(true);
+        response.addCookie(cookie);
+        response.sendRedirect("/groups");
     }
 }

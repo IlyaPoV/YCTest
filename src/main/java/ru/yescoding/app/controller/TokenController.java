@@ -53,12 +53,21 @@ public class TokenController {
         );
         cookie.setHttpOnly(true);
         response.addCookie(cookie);
-        new ObjectMapper().writeValue(
-                response.getOutputStream(),
-                Map.of(
-                        AuthenticationConfigConstants.AUTH_ACCESS_TOKEN_HEADER,
-                        AuthenticationConfigConstants.TOKEN_PREFIX + tokenService.generateAccessToken(subject)
-                )
+
+        cookie = new Cookie(
+                AuthenticationConfigConstants.AUTH_ACCESS_TOKEN_HEADER,
+                AuthenticationConfigConstants.TOKEN_PREFIX + tokenService.generateAccessToken(subject)
         );
+        cookie.setHttpOnly(true);
+        response.addCookie(cookie);
+
+//
+//        new ObjectMapper().writeValue(
+//                response.getOutputStream(),
+//                Map.of(
+//                        AuthenticationConfigConstants.AUTH_ACCESS_TOKEN_HEADER,
+//                        AuthenticationConfigConstants.TOKEN_PREFIX + tokenService.generateAccessToken(subject)
+//                )
+//        );
     }
 }

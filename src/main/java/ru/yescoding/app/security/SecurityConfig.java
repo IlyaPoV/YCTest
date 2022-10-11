@@ -6,6 +6,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
@@ -36,22 +37,26 @@ public class SecurityConfig {
                         cors -> new CorsConfiguration().applyPermitDefaultValues()
                 )
                 .and()
-//                .sessionManagement(
-//                        sessionManagement -> sessionManagement
-//                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                )
+                .sessionManagement(
+                        sessionManagement -> sessionManagement
+                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                )
                 .authorizeRequests(
                         authorizeRequests -> authorizeRequests
-                                .antMatchers("/register", "/authentication", "/refresh-token").permitAll()
+                                .antMatchers("/register", "/logout", "/authentication", "/refresh-token").permitAll()
                                 .antMatchers(staticResources).permitAll()
                                 .anyRequest().authenticated()
                 )
                 .formLogin()
                 .loginPage("/authentication")
                 .and()
-                .logout()
-                .logoutSuccessUrl("/authentication")
-                .and()
+//                .logout()
+//                .logoutUrl("/perform_logout")
+//                .logoutSuccessUrl("/authentication")
+//                .deleteCookies(AuthenticationConfigConstants.AUTH_ACCESS_TOKEN_HEADER, AuthenticationConfigConstants.AUTH_REFRESH_TOKEN_HEADER)
+//                .clearAuthentication(true)
+//                .invalidateHttpSession(true)
+//                .and()
                 .exceptionHandling()
                 .authenticationEntryPoint((rq, rs, e) -> {
                     if (HttpMethod.GET.matches(rq.getMethod())) {

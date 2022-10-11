@@ -3,7 +3,7 @@ form.addEventListener("submit", (evt) => {
     evt.preventDefault();
     const formData = new FormData(evt.target);
     ajaxSend(formData).then((response) => {
-        localStorage.setItem("access_token", JSON.parse(response).Access_Token);
+        localStorage.setItem("access_token", JSON.parse(response).access_token);
         console.log(
             localStorage.getItem("access_token")
         );

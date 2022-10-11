@@ -22,3 +22,7 @@ spring:
 #    active: test
   jpa:
     show-sql: "${app-config.database.debug:false}"
+
+logging:
+  level:
+    root: INFO

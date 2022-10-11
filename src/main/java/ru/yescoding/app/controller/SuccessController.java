@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class SuccessController {
-
     @GetMapping("/successes")
     public String getSuccessesForm(){
         return "success-page";

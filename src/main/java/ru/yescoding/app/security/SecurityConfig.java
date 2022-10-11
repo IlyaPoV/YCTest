@@ -2,7 +2,6 @@ package ru.yescoding.app.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -43,20 +42,22 @@ public class SecurityConfig {
                 )
                 .authorizeRequests(
                         authorizeRequests -> authorizeRequests
-                                .antMatchers("/register", "/logout", "/authentication", "/refresh-token").permitAll()
+                                .antMatchers("/register", "/authentication", "/refresh-token").permitAll()
                                 .antMatchers(staticResources).permitAll()
                                 .anyRequest().authenticated()
                 )
                 .formLogin()
                 .loginPage("/authentication")
                 .and()
-//                .logout()
-//                .logoutUrl("/perform_logout")
-//                .logoutSuccessUrl("/authentication")
-//                .deleteCookies(AuthenticationConfigConstants.AUTH_ACCESS_TOKEN_HEADER, AuthenticationConfigConstants.AUTH_REFRESH_TOKEN_HEADER)
-//                .clearAuthentication(true)
-//                .invalidateHttpSession(true)
-//                .and()
+                .logout(
+                        logoutConfig -> logoutConfig.logoutSuccessUrl("/authentication")
+                                .deleteCookies(
+                                        AuthenticationConfigConstants.AUTH_ACCESS_TOKEN_HEADER,
+                                        AuthenticationConfigConstants.AUTH_REFRESH_TOKEN_HEADER
+                                )
+                                .clearAuthentication(true)
+                                .invalidateHttpSession(true)
+                )
                 .exceptionHandling()
                 .authenticationEntryPoint((rq, rs, e) -> {
                     if (HttpMethod.GET.matches(rq.getMethod())) {
@@ -67,6 +68,9 @@ public class SecurityConfig {
                 .and()
                 .addFilter(this.jwtAuthenticationFilter)
                 .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
+                .csrf()
+                .ignoringAntMatchers("/logout")
+                .and()
                 .build();
     }
 }

@@ -22,7 +22,6 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     public JWTAuthenticationFilter(AuthenticationManager authenticationManager, TokenService tokenService) {
         super(authenticationManager);
         super.setFilterProcessesUrl("/authenticate");
-
         this.tokenService = tokenService;
     }
 
@@ -46,6 +45,6 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         );
         cookie.setHttpOnly(true);
         response.addCookie(cookie);
-        response.sendRedirect("/groups");
+        response.sendRedirect(AuthenticationConfigConstants.DEFAULT_REDIRECT_URI);
     }
 }

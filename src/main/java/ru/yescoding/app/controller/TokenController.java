@@ -1,11 +1,9 @@
 package ru.yescoding.app.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import ru.yescoding.app.exception.VerifyException;
 import ru.yescoding.app.security.AuthenticationConfigConstants;
 import ru.yescoding.app.service.TokenService;
@@ -13,9 +11,7 @@ import ru.yescoding.app.service.TokenService;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.Arrays;
-import java.util.Map;
 
 @Controller
 public class TokenController {
@@ -26,7 +22,7 @@ public class TokenController {
     }
 
     @GetMapping("/refresh-token")
-    public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void refreshToken(HttpServletRequest request, HttpServletResponse response) {
         if (request.getCookies() == null) {
             response.setStatus(HttpStatus.UNAUTHORIZED.value());
             return;

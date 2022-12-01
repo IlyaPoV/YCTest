@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import ru.yescoding.app.model.entity.UsersEntity;
+import ru.yescoding.app.model.entity.UserEntity;
 import ru.yescoding.app.repository.UserRepository;
 import ru.yescoding.app.security.model.UserDetailsImpl;
 
@@ -21,7 +21,7 @@ public class SecurityBeanConfig {
     @Bean
     public UserDetailsService userDetailsService(UserRepository userRepo) {
         return username -> {
-            UsersEntity user = userRepo.findByUserId(username);
+            UserEntity user = userRepo.findByUserId(username);
             if (user == null) {
                 throw new UsernameNotFoundException("User ‘" + username + "’ not found");
             }

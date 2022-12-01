@@ -6,7 +6,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "subjects")
-public class SubjectsEntity {
+public class SubjectEntity {
 
     @Id
     @Column(name = "subject_id", nullable = false)
@@ -17,23 +17,23 @@ public class SubjectsEntity {
     private String title;
 
     @JoinColumn(name = "subject_id", foreignKey = @ForeignKey(name = "fk_subjects"))
-    @OneToMany(targetEntity = ThemesEntity.class)
-    private List<ThemesEntity> themes;
+    @OneToMany(targetEntity = ThemeEntity.class)
+    private List<ThemeEntity> themes;
 
     @JoinColumn(name = "subject_id", foreignKey = @ForeignKey(name = "fk_subjects"))
-    @OneToMany(targetEntity = GroupsEntity.class)
-    private List<GroupsEntity> groups;
+    @OneToMany(targetEntity = GroupEntity.class)
+    private List<GroupEntity> groups;
 
     @JoinColumn(name = "subject_id", foreignKey = @ForeignKey(name = "fk_subjects"))
-    @OneToMany(targetEntity = TestsEntity.class)
-    private List<TestsEntity> tests;
+    @OneToMany(targetEntity = TestEntity.class)
+    private List<TestEntity> tests;
 
-    public void SubjectsEntity(UUID subjectId, String title) {
+    public void SubjectEntity(UUID subjectId, String title) {
         this.subjectId = subjectId;
         this.title = title;
     }
 
-    public void SubjectsEntity(){}
+    public void SubjectEntity(){}
 
     public UUID getSubjectId() {
         return subjectId;
@@ -43,15 +43,15 @@ public class SubjectsEntity {
         return title;
     }
 
-    public List<ThemesEntity> getThemes() {
+    public List<ThemeEntity> getThemes() {
         return themes;
     }
 
-    public List<GroupsEntity> getGroups() {
+    public List<GroupEntity> getGroups() {
         return groups;
     }
 
-    public List<TestsEntity> getTests() {
+    public List<TestEntity> getTests() {
         return tests;
     }
 }

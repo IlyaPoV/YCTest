@@ -6,7 +6,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "tests")
-public class TestsEntity {
+public class TestEntity {
 
     @Id
     @GeneratedValue
@@ -20,24 +20,24 @@ public class TestsEntity {
     private UUID subjectId;
 
     @JoinColumn(name = "test_id", foreignKey = @ForeignKey(name = "fk_tests"))
-    @OneToMany(targetEntity = TestHistoriesEntity.class)
-    private List<TestHistoriesEntity> testHistories;
+    @OneToMany(targetEntity = TestHistoryEntity.class)
+    private List<TestHistoryEntity> testHistories;
 
-    @ManyToMany(targetEntity = QuestionsEntity.class)
+    @ManyToMany(targetEntity = QuestionEntity.class)
     @JoinTable(
             name = "test_i_questions",
             joinColumns = {@JoinColumn(name = "test_id", foreignKey = @ForeignKey(name = "fk_tests"))},
             inverseJoinColumns = {@JoinColumn(name = "question_id", foreignKey = @ForeignKey(name = "fk_questions"))}
     )
-    private List<QuestionsEntity> questions;
+    private List<QuestionEntity> questions;
 
-    public TestsEntity(UUID testId, String title, UUID subjectId) {
+    public TestEntity(UUID testId, String title, UUID subjectId) {
         this.testId = testId;
         this.title = title;
         this.subjectId = subjectId;
     }
 
-    public TestsEntity(){}
+    public TestEntity(){}
 
     public UUID getTestId() {
         return testId;
@@ -51,11 +51,11 @@ public class TestsEntity {
         return subjectId;
     }
 
-    public List<TestHistoriesEntity> getTestHistories() {
+    public List<TestHistoryEntity> getTestHistories() {
         return testHistories;
     }
 
-    public List<QuestionsEntity> getQuestions() {
+    public List<QuestionEntity> getQuestions() {
         return questions;
     }
 }

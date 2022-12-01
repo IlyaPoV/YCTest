@@ -1,8 +1,8 @@
 package ru.yescoding.app.convert;
 
 import ru.yescoding.app.model.dto.RegistrationForm;
-import ru.yescoding.app.model.entity.UsersEntity;
+import ru.yescoding.app.model.entity.UserEntity;
 
 public interface DtoConverter {
-    UsersEntity convertUser(RegistrationForm registrationForm);
+    UserEntity convertUser(RegistrationForm registrationForm);
 }

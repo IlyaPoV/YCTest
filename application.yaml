@@ -4,7 +4,7 @@ app-config:
   database:
     host:  localhost
     port : 5432
-    dbname: ya-coding
+    dbname: postgres #ya-coding
     username: postgres
     #     local
     password: 1234

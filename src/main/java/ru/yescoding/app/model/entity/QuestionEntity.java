@@ -1,14 +1,12 @@
 package ru.yescoding.app.model.entity;
 
-import ru.yescoding.app.model.entity.enumTypes.QuestionType;
-
 import javax.persistence.*;
 import java.util.List;
 import java.util.UUID;
 
 @Entity
 @Table(name= "questions")
-public class QuestionsEntity {
+public class QuestionEntity {
 
     @Id
     @GeneratedValue
@@ -28,17 +26,17 @@ public class QuestionsEntity {
     private String q_type;
 
     @JoinColumn(name = "question_id", foreignKey = @ForeignKey(name = "fk_questions"))
-    @OneToMany(targetEntity = AnswersEntity.class)
-    private List<AnswersEntity> answers;
+    @OneToMany(targetEntity = AnswerEntity.class)
+    private List<AnswerEntity> answers;
 
     @JoinColumn(name = "question_id", foreignKey = @ForeignKey(name = "fk_questions"))
-    @OneToMany(targetEntity = TestHistoryAnswersEntity.class)
-    private List<TestHistoryAnswersEntity> testHistoriesAnswer;
+    @OneToMany(targetEntity = TestHistoryAnswerEntity.class)
+    private List<TestHistoryAnswerEntity> testHistoriesAnswer;
 
     @ManyToMany(mappedBy = "questions")
-    private List<TestsEntity> tests;
+    private List<TestEntity> tests;
 
-    public QuestionsEntity(UUID questionId, UUID themeId, int points, String questionText, String q_type) {
+    public QuestionEntity(UUID questionId, UUID themeId, int points, String questionText, String q_type) {
         this.questionId = questionId;
         this.themeId = themeId;
         this.points = points;
@@ -46,7 +44,7 @@ public class QuestionsEntity {
         this.q_type = q_type;
     }
 
-    public QuestionsEntity(){}
+    public QuestionEntity(){}
 
     public UUID getQuestionId() {
         return questionId;
@@ -68,15 +66,15 @@ public class QuestionsEntity {
         return q_type;
     }
 
-    public List<AnswersEntity> getAnswers() {
+    public List<AnswerEntity> getAnswers() {
         return answers;
     }
 
-    public List<TestHistoryAnswersEntity> getTestHistoriesAnswer() {
+    public List<TestHistoryAnswerEntity> getTestHistoriesAnswer() {
         return testHistoriesAnswer;
     }
 
-    public List<TestsEntity> getTests() {
+    public List<TestEntity> getTests() {
         return tests;
     }
 }

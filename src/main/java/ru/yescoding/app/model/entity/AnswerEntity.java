@@ -6,7 +6,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "answers")
-public class AnswersEntity {
+public class AnswerEntity {
 
     @Id
     @GeneratedValue
@@ -23,17 +23,17 @@ public class AnswersEntity {
     private String answerText;
 
     @JoinColumn(name = "answer_id", foreignKey = @ForeignKey(name = "fk_answers"))
-    @OneToMany(targetEntity = TestHistoryAnswersEntity.class)
-    private List<TestHistoryAnswersEntity> testHistoryAnswers;
+    @OneToMany(targetEntity = TestHistoryAnswerEntity.class)
+    private List<TestHistoryAnswerEntity> testHistoryAnswers;
 
-    public AnswersEntity(UUID answerId, UUID questionId, boolean isRight, String answerText) {
+    public AnswerEntity(UUID answerId, UUID questionId, boolean isRight, String answerText) {
         this.answerId = answerId;
         this.questionId = questionId;
         this.isRight = isRight;
         this.answerText = answerText;
     }
 
-    public AnswersEntity(){}
+    public AnswerEntity(){}
 
     public UUID getAnswerId() {
         return answerId;
@@ -51,7 +51,7 @@ public class AnswersEntity {
         return answerText;
     }
 
-    public List<TestHistoryAnswersEntity> getTestHistoryAnswers() {
+    public List<TestHistoryAnswerEntity> getTestHistoryAnswers() {
         return testHistoryAnswers;
     }
 }

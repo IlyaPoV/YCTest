@@ -3,7 +3,7 @@ package ru.yescoding.app.security.model;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import ru.yescoding.app.model.entity.UsersEntity;
+import ru.yescoding.app.model.entity.UserEntity;
 
 import java.util.Collection;
 import java.util.List;
@@ -23,7 +23,7 @@ public class UserDetailsImpl implements UserDetails {
         this.authorities = authorities;
     }
 
-    public static UserDetailsImpl build(UsersEntity user) {
+    public static UserDetailsImpl build(UserEntity user) {
         List<GrantedAuthority> authorities = Stream.of(user.getRole())
                 .map(role -> new SimpleGrantedAuthority(role.getCode()))
                 .collect(Collectors.toList());

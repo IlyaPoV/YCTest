@@ -6,7 +6,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "groups")
-public class GroupsEntity {
+public class GroupEntity {
 
     @Id
     @GeneratedValue
@@ -20,15 +20,15 @@ public class GroupsEntity {
     private UUID subjectId;
 
     @ManyToMany(mappedBy = "groups")
-    private List<UsersEntity> users;
+    private List<UserEntity> users;
 
-    public GroupsEntity(UUID groupId, int grade, UUID subjectId) {
+    public GroupEntity(UUID groupId, int grade, UUID subjectId) {
         this.groupId = groupId;
         this.grade = grade;
         this.subjectId = subjectId;
     }
 
-    public GroupsEntity(){}
+    public GroupEntity(){}
 
     public UUID getGroupId() {
         return groupId;
@@ -42,7 +42,7 @@ public class GroupsEntity {
         return subjectId;
     }
 
-    public List<UsersEntity> getUsers() {
+    public List<UserEntity> getUsers() {
         return users;
     }
 }

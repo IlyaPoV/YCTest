@@ -7,7 +7,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "test_history_answers")
-public class TestHistoryAnswersEntity {
+public class TestHistoryAnswerEntity {
     @EmbeddedId
     @Column(name = "test_histories_id")
     private CompositeTestHistoryAnswersId compositeTestHistoryAnswersId;
@@ -23,15 +23,15 @@ public class TestHistoryAnswersEntity {
 
     @ManyToOne
     @JoinColumn(name = "test_histories_id", insertable = false, updatable = false)
-    private TestHistoriesEntity testHistories;
+    private TestHistoryEntity testHistories;
 
     @ManyToOne
     @JoinColumn(name = "answer_id", insertable = false, updatable = false)
-    private AnswersEntity answers;
+    private AnswerEntity answers;
 
     @ManyToOne
     @JoinColumn(name = "question_id", insertable = false, updatable = false)
-    private QuestionsEntity questions;
+    private QuestionEntity questions;
 
     @Embeddable
     private static class CompositeTestHistoryAnswersId implements Serializable {
@@ -84,7 +84,7 @@ public class TestHistoryAnswersEntity {
         }
     }
 
-    public TestHistoryAnswersEntity(){}
+    public TestHistoryAnswerEntity(){}
 
     public CompositeTestHistoryAnswersId getTestHistoriesId() {
         return compositeTestHistoryAnswersId;

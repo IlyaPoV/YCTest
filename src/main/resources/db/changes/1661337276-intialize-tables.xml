@@ -30,6 +30,7 @@
             CREATE TABLE if not exists public.subjects (
             subject_id uuid NOT NULL default uuid_generate_v4(),
             title varchar NULL,
+            grade int,
             CONSTRAINT subjects_pkey PRIMARY KEY (subject_id)
             );
         </sql>

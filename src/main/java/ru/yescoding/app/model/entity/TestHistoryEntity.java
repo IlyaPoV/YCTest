@@ -1,19 +1,13 @@
 package ru.yescoding.app.model.entity;
 
-import org.springframework.data.relational.core.dialect.PostgresDialect;
-
 import javax.persistence.*;
-import javax.xml.crypto.Data;
-import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
 @Entity
 @Table(name = "test_histories")
-public class TestHistoriesEntity {
+public class TestHistoryEntity {
 
     @Id
     @GeneratedValue
@@ -30,17 +24,17 @@ public class TestHistoriesEntity {
     private LocalDate passingDate;
 
     @JoinColumn(name = "test_histories_id", foreignKey = @ForeignKey(name = "fk_test_histories"))
-    @OneToMany(targetEntity = TestHistoryAnswersEntity.class)
-    private List<TestHistoryAnswersEntity> testHistoryAnswers;
+    @OneToMany(targetEntity = TestHistoryAnswerEntity.class)
+    private List<TestHistoryAnswerEntity> testHistoryAnswers;
 
-    public TestHistoriesEntity(UUID testHistoriesId, UUID userId, UUID testId, LocalDate passingDate) {
+    public TestHistoryEntity(UUID testHistoriesId, UUID userId, UUID testId, LocalDate passingDate) {
         this.testHistoriesId = testHistoriesId;
         this.userId = userId;
         this.testId = testId;
         this.passingDate = passingDate;
     }
 
-    public TestHistoriesEntity(){}
+    public TestHistoryEntity(){}
 
     public UUID getTestHistoriesId() {
         return testHistoriesId;
@@ -58,7 +52,7 @@ public class TestHistoriesEntity {
         return passingDate;
     }
 
-    public List<TestHistoryAnswersEntity> getTestHistoryAnswers() {
+    public List<TestHistoryAnswerEntity> getTestHistoryAnswers() {
         return testHistoryAnswers;
     }
 }

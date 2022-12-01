@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class UsersEntity {
+public class UserEntity {
     @Id
     @Column(name = "user_id", nullable = false)
     private String userId;
@@ -26,18 +26,18 @@ public class UsersEntity {
     private Role role;
 
     @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "fk_users"))
-    @OneToMany(targetEntity = TestHistoriesEntity.class)
-    private List<TestHistoriesEntity> testHistories;
+    @OneToMany(targetEntity = TestHistoryEntity.class)
+    private List<TestHistoryEntity> testHistories;
 
-    @ManyToMany(targetEntity = GroupsEntity.class)
+    @ManyToMany(targetEntity = GroupEntity.class, fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_i_group",
             joinColumns = {@JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "fk_users"))},
             inverseJoinColumns = {@JoinColumn(name = "group_id", foreignKey = @ForeignKey(name = "fk_groups"))}
     )
-    private List<GroupsEntity> groups;
+    private List<GroupEntity> groups;
 
-    public UsersEntity(String userId, String password, String firstName, String secondName, Role role) {
+    public UserEntity(String userId, String password, String firstName, String secondName, Role role) {
         this.userId = userId;
         this.password = password;
         this.name = firstName;
@@ -45,7 +45,7 @@ public class UsersEntity {
         this.role = role;
     }
 
-    public UsersEntity(){}
+    public UserEntity(){}
 
     public String getUserId() {
         return userId;
@@ -87,19 +87,19 @@ public class UsersEntity {
         this.role = role;
     }
 
-    public List<TestHistoriesEntity> getTestHistories() {
+    public List<TestHistoryEntity> getTestHistories() {
         return testHistories;
     }
 
-    public void setTestHistories(List<TestHistoriesEntity> testHistories) {
+    public void setTestHistories(List<TestHistoryEntity> testHistories) {
         this.testHistories = testHistories;
     }
 
-    public List<GroupsEntity> getGroups() {
+    public List<GroupEntity> getGroups() {
         return groups;
     }
 
-    public void setGroups(List<GroupsEntity> groups) {
+    public void setGroups(List<GroupEntity> groups) {
         this.groups = groups;
     }
 }

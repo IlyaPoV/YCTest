@@ -6,7 +6,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "themes")
-public class ThemesEntity {
+public class ThemeEntity {
 
     @Id
     @GeneratedValue
@@ -20,16 +20,16 @@ public class ThemesEntity {
     private String title;
 
     @JoinColumn(name = "theme_id", foreignKey = @ForeignKey(name = "fk_themes"))
-    @OneToMany(targetEntity = QuestionsEntity.class)
-    private List<QuestionsEntity> questions;
+    @OneToMany(targetEntity = QuestionEntity.class)
+    private List<QuestionEntity> questions;
 
-    public ThemesEntity(UUID themeId, UUID subjectId, String title) {
+    public ThemeEntity(UUID themeId, UUID subjectId, String title) {
         this.themeId = themeId;
         this.subjectId = subjectId;
         this.title = title;
     }
 
-    public ThemesEntity(){}
+    public ThemeEntity(){}
 
     public UUID getThemeId() {
         return themeId;
@@ -43,7 +43,7 @@ public class ThemesEntity {
         return title;
     }
 
-    public List<QuestionsEntity> getQuestions() {
+    public List<QuestionEntity> getQuestions() {
         return questions;
     }
 }

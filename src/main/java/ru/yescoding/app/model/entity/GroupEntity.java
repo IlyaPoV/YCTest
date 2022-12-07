@@ -16,33 +16,53 @@ public class GroupEntity {
     @Column(name = "grade")
     private int grade;
 
-    @Column(name = "subject_id")
-    private UUID subjectId;
+    @JoinColumn(name = "subject_id")
+    @ManyToOne
+    private SubjectEntity subject;
+
+    @Column(name = "title")
+    private String title;
 
     @ManyToMany(mappedBy = "groups")
     private List<UserEntity> users;
 
-    public GroupEntity(UUID groupId, int grade, UUID subjectId) {
-        this.groupId = groupId;
-        this.grade = grade;
-        this.subjectId = subjectId;
-    }
-
-    public GroupEntity(){}
-
     public UUID getGroupId() {
         return groupId;
+    }
+
+    public void setGroupId(UUID groupId) {
+        this.groupId = groupId;
     }
 
     public int getGrade() {
         return grade;
     }
 
-    public UUID getSubjectId() {
-        return subjectId;
+    public void setGrade(int grade) {
+        this.grade = grade;
+    }
+
+    public SubjectEntity getSubject() {
+        return subject;
+    }
+
+    public void setSubject(SubjectEntity subjectId) {
+        this.subject = subjectId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public List<UserEntity> getUsers() {
         return users;
+    }
+
+    public void setUsers(List<UserEntity> users) {
+        this.users = users;
     }
 }

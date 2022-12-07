@@ -11,20 +11,19 @@ import java.util.Map;
 
 @Controller
 public class GroupsController {
+    private final GroupsService groupsService;
 
-//    private final GroupsService groupsService;
-//
-//    public GroupsController(GroupsService groupsService){
-//        this.groupsService = groupsService;
-//    }
-//
-//    @ModelAttribute
-//    public void add(Model model) {
-//        model.addAttribute(
-//                "groups",
-//                groupsService.getGroups()
-//        );
-//    }
+    public GroupsController(GroupsService groupsService){
+        this.groupsService = groupsService;
+    }
+
+    @ModelAttribute
+    public void add(Model model) {
+        model.addAttribute(
+                "groups",
+                groupsService.getGroups()
+        );
+    }
 
     @GetMapping("/groups")
     public String getGroups(){

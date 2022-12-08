@@ -65,4 +65,5 @@ public class GroupEntity {
     public void setUsers(List<UserEntity> users) {
         this.users = users;
     }
+
 }

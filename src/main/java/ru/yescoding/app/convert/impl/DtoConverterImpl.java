@@ -29,7 +29,7 @@ public class DtoConverterImpl implements DtoConverter {
                 ),
                 registrationForm.getFirstName(),
                 registrationForm.getSecondName(),
-                Role.STUDENT
+                Role.STUDENT //TODO
         );
     }
 
@@ -41,8 +41,7 @@ public class DtoConverterImpl implements DtoConverter {
                         g -> new GroupDto(
                                 g.getTitle(),
                                 g.getSubject().getTitle(),
-                                0, //TODO
-                                1, //TODO
+                                String.format(Integer.toString(g.getGrade()) + '/' + Integer.toString(g.getSubject().getGrade())),
                                 user.getName()
                         )
                 )

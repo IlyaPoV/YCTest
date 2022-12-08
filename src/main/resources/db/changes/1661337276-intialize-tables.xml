@@ -57,6 +57,7 @@
             CREATE TABLE if not exists public."groups" (
             group_id uuid NOT NULL default uuid_generate_v4(),
             subject_id uuid NULL,
+            title varchar,
 
             grade int4 NULL,
             CONSTRAINT groups_pkey PRIMARY KEY (group_id),

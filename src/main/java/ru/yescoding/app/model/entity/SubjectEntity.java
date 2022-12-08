@@ -16,6 +16,9 @@ public class SubjectEntity {
     @Column(name = "title")
     private String title;
 
+    @Column(name = "grade")
+    private int grade;
+
     @JoinColumn(name = "subject_id", foreignKey = @ForeignKey(name = "fk_subjects"))
     @OneToMany(targetEntity = ThemeEntity.class)
     private List<ThemeEntity> themes;
@@ -28,9 +31,10 @@ public class SubjectEntity {
     @OneToMany(targetEntity = TestEntity.class)
     private List<TestEntity> tests;
 
-    public void SubjectEntity(UUID subjectId, String title) {
+    public void SubjectEntity(UUID subjectId, String title, int grade) {
         this.subjectId = subjectId;
         this.title = title;
+        this.grade = grade;
     }
 
     public void SubjectEntity(){}
@@ -41,6 +45,10 @@ public class SubjectEntity {
 
     public String getTitle() {
         return title;
+    }
+
+    public int getGrade() {
+        return grade;
     }
 
     public List<ThemeEntity> getThemes() {
@@ -54,4 +62,5 @@ public class SubjectEntity {
     public List<TestEntity> getTests() {
         return tests;
     }
+
 }

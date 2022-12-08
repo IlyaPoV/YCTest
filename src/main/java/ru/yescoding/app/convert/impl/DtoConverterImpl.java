@@ -41,7 +41,7 @@ public class DtoConverterImpl implements DtoConverter {
                         g -> new GroupDto(
                                 g.getTitle(),
                                 g.getSubject().getTitle(),
-                                String.format(Integer.toString(g.getGrade()) + '/' + Integer.toString(g.getSubject().getGrade())),
+                                Integer.toString(g.getGrade()) + '/' + Integer.toString(g.getSubject().getGrade()),
                                 user.getName()
                         )
                 )

@@ -12,23 +12,23 @@
            <ul class="group-page__list" th:each="group : ${groups}">
             <li class="group-list__item">
                 <a class="group-item__link" th:href="@{/group-exercise}">
-                    <h2 class="group-item__headline" th:text=${group.title}>
+                    <h2 class="group-item__headline" th:text="${group.title}">
                         Костя К – Питон
                     </h2>
                     <div class="group-item__desc-list" >
                         <div class="group-item__desc-wrap">
                             <p class="desc-wrap__key">Направление</p>
-                            <p class="desc-wrap__value" th:text=${group.subject}>Python</p>
+                            <p class="desc-wrap__value" th:text="${group.subject}">Python</p>
                         </div>
                         <div class="group-item__desc-wrap">
                             <p class="desc-wrap__key">Пройдено</p>
-                            <p class="desc-wrap__value" th:text=${group.grade}>
+                            <p class="desc-wrap__value" th:text="${group.grade}">
                                 0/1
                             </p>
                         </div>
                         <div class="group-item__desc-wrap">
                             <p class="desc-wrap__key">Преподаватель</p>
-                            <p class="desc-wrap__value" th:text=${group.teacher}>Максим</p>
+                            <p class="desc-wrap__value" th:text="${group.teacher}">Максим</p>
                         </div>
                     </div>
                 </a>

@@ -29,8 +29,7 @@ public class GroupsController {
     }
 
     @GetMapping("/groups")
-    public String getGroups(@ModelAttribute("groups") List<GroupDto> groups){
-        System.out.println(groups);
+    public String getGroups(){
         return "group-page";
     }
 }

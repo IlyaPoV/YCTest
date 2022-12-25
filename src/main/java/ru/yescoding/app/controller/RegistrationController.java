@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ru.yescoding.app.convert.DtoConverter;
+import ru.yescoding.app.convert.GroupDtoConverter;
 import ru.yescoding.app.model.dto.RegistrationForm;
 import ru.yescoding.app.repository.UserRepository;
 import ru.yescoding.app.service.SecurityService;

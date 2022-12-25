@@ -41,3 +41,11 @@ VALUES((select group_id from groups where title = 'Костя К-Мобилки'
 INSERT INTO user_i_group
 (group_id, user_id)
 VALUES((select group_id from groups where title = 'Костя К-Мобилки'), (select user_id from users where first_name = 'Учитель'));
+
+INSERT INTO tests
+(test_id, title, subject_id)
+VALUES(uuid_generate_v4(), 'Классы', (select subject_id from subjects where title = 'Питон'));
+
+INSERT INTO test_histories
+(test_histories_id, user_id, test_id, passing_date)
+VALUES(uuid_generate_v4(), 'kok@mail.ru', (select test_id from tests where tests.title = 'Классы'), '2022-08-13');

@@ -5,6 +5,6 @@ import ru.yescoding.app.model.entity.UserEntity;
 
 import java.util.UUID;
 
-public interface UserRepository extends JpaRepository<UserEntity, UUID> {
+public interface UserRepository extends JpaRepository<UserEntity, String> {
     UserEntity findByUserId(String username);
 }

@@ -15,7 +15,7 @@ public class TestHistoryEntity {
     private UUID testHistoriesId;
 
     @Column(name = "user_id")
-    private UUID userId;
+    private String userId;
 
     @Column(name = "test_id")
     private UUID testId;
@@ -27,7 +27,7 @@ public class TestHistoryEntity {
     @OneToMany(targetEntity = TestHistoryAnswerEntity.class)
     private List<TestHistoryAnswerEntity> testHistoryAnswers;
 
-    public TestHistoryEntity(UUID testHistoriesId, UUID userId, UUID testId, LocalDate passingDate) {
+    public TestHistoryEntity(UUID testHistoriesId, String userId, UUID testId, LocalDate passingDate) {
         this.testHistoriesId = testHistoriesId;
         this.userId = userId;
         this.testId = testId;
@@ -40,7 +40,7 @@ public class TestHistoryEntity {
         return testHistoriesId;
     }
 
-    public UUID getUserId() {
+    public String getUserId() {
         return userId;
     }
 

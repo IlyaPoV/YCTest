@@ -7,7 +7,7 @@ import ru.yescoding.app.model.entity.UserEntity;
 
 import java.util.List;
 
-public interface DtoConverter {
+public interface GroupDtoConverter {
     UserEntity convertUser(RegistrationForm registrationForm);
     List<GroupDto> convertGroups(UserEntity user, List<GroupEntity> groups);
 }

@@ -2,7 +2,7 @@ package ru.yescoding.app.convert.impl;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import ru.yescoding.app.convert.DtoConverter;
+import ru.yescoding.app.convert.GroupDtoConverter;
 import ru.yescoding.app.model.dto.GroupDto;
 import ru.yescoding.app.model.dto.RegistrationForm;
 import ru.yescoding.app.model.entity.GroupEntity;
@@ -13,10 +13,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class DtoConverterImpl implements DtoConverter {
+public class GroupDtoConverterImpl implements GroupDtoConverter {
     private final PasswordEncoder passwordEncoder;
 
-    public DtoConverterImpl(PasswordEncoder passwordEncoder) {
+    public GroupDtoConverterImpl(PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
     }
 
